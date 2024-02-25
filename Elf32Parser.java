@@ -54,7 +54,8 @@ public class Elf32Parser {
             sections.put(name.toString(), sectionHeaders[i]);
         }
 
-        this.strtab = parseStrtab(sections.get(".strtab"));
+        this.strtab = parseStrtab(sectionHeaders[symtab.sh_link]);
+        parseSymTab();
     }
 
     public void printSymtab(PrintWriter out) {

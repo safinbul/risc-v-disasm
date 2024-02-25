@@ -38,7 +38,7 @@ public class InstructionField {
         return (value >> 20) & 0x1F;
     }
 
-    public int getFunc7() {
+    public int getFunct7() {
         return (value >> 25) & 0x7F;
     }
 

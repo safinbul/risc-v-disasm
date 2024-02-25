@@ -6,20 +6,27 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        if (args.length != 2) {
-            System.out.println("Usage: java Main <elf-file> <output-file>");
-            return;
-        }
-        Elf32Parser parser = new Elf32Parser(args[0]);
-        parser.parse();
-        PrintWriter out = new PrintWriter(args[1]);
+        try {
+            if (args.length != 2) {
+                System.out.println("Usage: java Main <elf-file> <output-file>");
+                return;
+            }
+            Elf32Parser parser = new Elf32Parser(args[0]);
+            parser.parse();
+            PrintWriter out = new PrintWriter(args[1]);
 
-        out.println(".text");
-        LinkedHashMap<Integer, Integer> textSection = parser.getTextSection(out);
-        disassemble(textSection, parser.getMarks(), out);
-        out.println("\n.symtab");
-        parser.printSymtab(out);
-        out.close();
+            out.println(".text");
+            LinkedHashMap<Integer, Integer> textSection = parser.getTextSection(out);
+            disassemble(textSection, parser.getMarks(), out);
+            out.println("\n.symtab");
+            parser.printSymtab(out);
+            out.close();
+            System.out.println("Disassembled successfully");
+        } catch (IOException e) {
+            System.out.println("File not found");
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
     }
 
     public static void disassemble(LinkedHashMap<Integer, Integer> textSection, HashMap<Integer, String> marks,

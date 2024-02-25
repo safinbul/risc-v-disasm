@@ -82,9 +82,9 @@ public class InstructionManager {
                                     instruction.getShamt()));
                             break;
                         case 0b101:
-                            if (instruction.getFunc7() == 0b0000000) {
+                            if (instruction.getFunct7() == 0b0000000) {
                                 instruction.setName("srli");
-                            } else if (instruction.getFunc7() == 0b0100000) {
+                            } else if (instruction.getFunct7() == 0b0100000) {
                                 instruction.setName("srai");
                             }
                             instruction.setArgs(String.format("%s, %s, %d",
@@ -114,7 +114,7 @@ public class InstructionManager {
 
             // Integer Register-Register Instructions
             if (instruction.getOpCode() == 0b0110011) {
-                switch ((instruction.getFunc7() << 3) + instruction.getFunct3()) {
+                switch ((instruction.getFunct7() << 3) + instruction.getFunct3()) {
                     case 0b0000000000:
                         instruction.setName("add");
                         break;
@@ -341,9 +341,9 @@ public class InstructionManager {
 
             // Environment call and break instructions
             if (instruction.getOpCode() == 0b1110011) {
-                if (instruction.getFunct3() == 0b000 && instruction.getFunc7() == 0b0000000) {
+                if (instruction.getFunct3() == 0b000 && instruction.getFunct7() == 0b0000000) {
                     instruction.setName("ecall");
-                } else if (instruction.getFunct3() == 0b000 && instruction.getFunc7() == 0b0000000) {
+                } else if (instruction.getFunct3() == 0b000 && instruction.getFunct7() == 0b0000000) {
                     instruction.setName("ebreak");
                 } else {
                     throw new UnknownInstructionException();
@@ -398,7 +398,7 @@ public class InstructionManager {
 
             throw new UnknownInstructionException();
         } catch (UnknownInstructionException e) {
-            instruction.setName("unknown");
+            instruction.setName("invalid_instruction");
             instruction.setArgs("");
             return instruction;
         }
