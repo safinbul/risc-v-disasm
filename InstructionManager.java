@@ -291,6 +291,7 @@ public class InstructionManager {
                 if (instruction.getValue() == 8330000f) {
                     instruction.setName("fence.tso");
                 } else if (instruction.getValue() == 0x100000f) {
+                    // Zihintp extension
                     instruction.setName("pause");
                 } else if (instruction.getFunct3() == 0b001) {
                     // Zifencei extension
@@ -300,6 +301,9 @@ public class InstructionManager {
                     int pred = instruction.getSegment(24, 28);
                     int succ = instruction.getSegment(20, 24);
                     StringBuilder arg = new StringBuilder();
+                    if (pred == 0) {
+                        arg.append("0");
+                    }
                     if ((pred & 0b1000) != 0) {
                         arg.append("i");
                     }
@@ -313,6 +317,9 @@ public class InstructionManager {
                         arg.append("w");
                     }
                     arg.append(", ");
+                    if (succ == 0) {
+                        arg.append("0");
+                    }
                     if ((succ & 0b1000) != 0) {
                         arg.append("i");
                     }
