@@ -61,7 +61,7 @@ public class Elf32Parser {
         if (symbols == null) {
             parseSymTab();
         }
-        out.println("\nSymbol Value          	Size Type 	Bind 	Vis   	Index Name");
+        out.println("\nSymbol Value              Size Type     Bind     Vis       Index Name");
         for (int i = 0; i < symbols.length; i++) {
             Symbol symbol = symbols[i];
             out.printf("[%4d] 0x%-15X %5d %-8s %-8s %-8s %6s %s\n", i, symbol.st_value, symbol.st_size,
