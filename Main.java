@@ -21,11 +21,8 @@ public class Main {
             out.println("\n.symtab");
             parser.printSymtab(out);
             out.close();
-            System.out.println("Disassembled successfully");
-        } catch (IOException e) {
-            System.out.println("File not found");
         } catch (Exception e) {
-            System.out.println("Error");
+            System.err.println("Error");
         }
     }
 
