@@ -1,4 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/KMfakJjp)
-# Test status in Github.Actions: [![Ci/CD](../../actions/workflows/ci.yaml/badge.svg?branch=main&event=workflow_dispatch)](../../actions/workflows/ci.yaml)
+# Учебный проект по компьютерной архитектуре (RISC-V)
 
-Проверяется вывод в последнем запуске автотестов. 
+Небольшая утилита на Java для разбора ELF32-файлов и дизассемблирования секции `.text` в инструкции RISC-V. Проект предназначен для учебных целей и демонстрирует базовые этапы парсинга ELF и форматирования вывода.
+
+## Запуск
+
+Сборка и запуск выполняются стандартными средствами Java:
+
+```bash
+javac *.java
+java Main <elf-file> <output-file>
+```
+
+В результате формируется текстовый отчет, содержащий дизассемблированную секцию `.text` и таблицу символов `.symtab`.
+
+## Отчет
+
+Подробности реализации и выводы приведены в отчете: `Сафин_Булат_37_4.pdf`.
